@@ -32,7 +32,7 @@ async def stream_data(websocket:WebSocket):
 
   try:
     while True:
-      await wbsocket.receive_text()
+      await websocket.receive_text()
   except  WebSocketDisconnect: 
       print("Websocket Connection Closed")
   finally:
