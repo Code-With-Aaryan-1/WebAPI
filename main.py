@@ -24,20 +24,21 @@ async def send_movie_data():
 
   await asyncio.sleep(2)
 
-@app.websocket("/stream/")
+@app.websocket("/stream")
 async def stream_data(websocket:WebSocket):
   await websocket.accept()
   connected_clients.append(websocket)
+  print("New Websocket Connection Established")
 
   try:
     while True:
-      await asyncio.sleep(10)
-  except  Exception: 
-      pass 
+      await wbsocket.receive_text()
+  except  WebSocketDisconnect: 
+      print("Websocket Connection Closed")
   finally:
       conncted_clients.remove(websocket)
 
-@app.websocket("startup")
+@app.on_event("startup")
 async def start_stream():
   asyncio.create_task(send_movie_data())
     
