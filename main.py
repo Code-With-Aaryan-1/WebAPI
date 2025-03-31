@@ -26,7 +26,7 @@ async def send_movie_data():
 
 @app.websocket("/stream/")
 async def stream_data(websocket:WebSocket):
-  await websocket.accept(
+  await websocket.accept()
   connected_clients.append(websocket)
 
   try:
