@@ -24,7 +24,7 @@ async def send_movie_data():
 
   await asyncio.sleep(2)
 
-@app.websocket("/stream")
+@app.websocket("/stream/")
 async def stream_data(websocket:WebSocket):
   await websocket.accept()
   connected_clients.append(websocket)
@@ -32,13 +32,16 @@ async def stream_data(websocket:WebSocket):
 
   try:
     while True:
-      await websocket.receive_text()
-  except  WebSocketDisconnect: 
-      print("Websocket Connection Closed")
+      await ayncio.sleep(10)
+  except  Exception: 
+      pass
   finally:
       conncted_clients.remove(websocket)
 
 @app.on_event("startup")
 async def start_stream():
   asyncio.create_task(send_movie_data())
-    
+
+if __name__=="__main__":
+  port=int(os.environ.get("PORT",10000))
+  uvicorn.run(app,host="0.0.0.0",port=port)
