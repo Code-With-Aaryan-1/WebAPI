@@ -11,6 +11,11 @@ app = FastAPI()
 movies = ["Inception", "Interstellar", "Titanic", "Avatar", "The Dark Knight"]
 connected_clients: List[WebSocket] = []
 
+
+@app.get("/"):
+async def root():
+    return {"message":"Websocket server is live"}
+
 async def send_movie_data():
     while True:
         if connected_clients:
