@@ -12,7 +12,7 @@ movies = ["Inception", "Interstellar", "Titanic", "Avatar", "The Dark Knight"]
 connected_clients: List[WebSocket] = []
 
 
-@app.get("/"):
+@app.get("/")
 async def root():
     return {"message":"Websocket server is live"}
 
