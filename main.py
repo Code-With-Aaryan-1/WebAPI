@@ -43,5 +43,5 @@ async def startup():
     asyncio.create_task(send_movie_data())
 
 if __name__ == "__main__":
-    port = 5000
+    port = 10000
     uvicorn.run(app, host="0.0.0.0", port=port)
